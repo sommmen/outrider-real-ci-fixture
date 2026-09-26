@@ -1,0 +1,26 @@
+name: fixture-ci
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: required-ci
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Report fixture mode
+        run: |
+          Write-Output "Fixture mode: $(Get-Content fixture-control.txt)"
+        shell: pwsh
+      - name: Enforce fixture mode
+        run: |
+          if ((Get-Content fixture-control.txt).Trim() -eq 'fail') {
+            Write-Error 'Intentional real-CI fixture failure.'
+            exit 1
+          }
+        shell: pwsh
