@@ -20,3 +20,5 @@ accepts a public fixture containing only these non-secret canonical files can pa
 provisioner change that dedicated fixture repository to public and retry. Its JSON
 handoff reports `protectionMode: "public-fallback"` so evidence cannot misstate
 that the fixture remained private.
+
+Head movement marker: 2026-09-26.
